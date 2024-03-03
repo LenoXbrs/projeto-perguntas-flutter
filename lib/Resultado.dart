@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 class Resultado extends StatelessWidget {
 
   final int pont;
-    const Resultado(this.pont, {super.key});
+  final void Function() reiniciarQuestionario;
+    const Resultado(this.pont, this.reiniciarQuestionario, {super.key});
 
   String get FraseResultado {
     if(pont < 8){
       return 'Parabéns';
     } else if(pont < 12){
       return 'Brabo';
-    } else if(pont < 16){
+    } else if(pont < 25){
       return 'Brabissimo';
     } else {
       return 'Você é o cara';
@@ -21,11 +22,27 @@ class Resultado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return Center(
-          child: Text(
-            FraseResultado,
-          style: TextStyle(fontSize: 28),
-          ),
-        );
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+              child: Text(
+                FraseResultado,
+              style: TextStyle(fontSize: 28),
+              ),
+            ),
+
+            ElevatedButton(
+              onPressed: reiniciarQuestionario,
+              child: Text('Reiniciar!') ,
+                   style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          
+        )
+              )
+      ],
+    );
+    
   }
 }

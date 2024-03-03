@@ -17,15 +17,15 @@ var _pontuacaoTotal = 0;
           {'texto': 'Preto', 'pontuacao' : 6},
           {'texto': 'Azul', 'pontuacao' : 5},
           {'texto': 'Vermelho','pontuacao' :8},
-          {'texto': 'Rosa','pontuacao' : 7},
+          {'texto': 'Rosa','pontuacao' : 0},
           ]
       },
           {
         'texto' : 'Qual seu animal favorito ?',
         'respostas' : [
           {'texto':'Ratel','pontuacao' : 10},
-          {'texto': 'Tigre','pontuacao' : 9},
-          {'texto':'Leao','pontuacao' :8},
+          {'texto': 'Tigre','pontuacao' : 6},
+          {'texto':'Leao','pontuacao' :3},
           {'texto': 'Capivara','pontuacao' :9}
         ]
       },
@@ -47,9 +47,13 @@ var _pontuacaoTotal = 0;
        _pontuacaoTotal += pontuacao;
     });
     }
+  }
 
-    print(_pontuacaoTotal);
-  
+  void _reiniciarQuestionario(){
+    setState(() {
+      _perguntaSelecionada =0;
+      _pontuacaoTotal = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -82,7 +86,7 @@ var _pontuacaoTotal = 0;
           perguntaSelecionada: _perguntaSelecionada,
           responder: _responder,
         ) 
-         :  Resultado(_pontuacaoTotal),
+         :  Resultado(_pontuacaoTotal,_reiniciarQuestionario),
       ),
     );
   }
